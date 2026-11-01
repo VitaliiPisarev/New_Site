@@ -9,6 +9,26 @@ export function Packages() {
             <span>{s.label} / НАПРАВЛЕНИЕ</span>
             <span aria-hidden="true">→</span>
           </div>
+          <div
+            className={`package-mark package-mark--${s.slug}`}
+            aria-hidden="true"
+          >
+            {s.slug === "audit" ? (
+              <svg viewBox="0 0 40 40" fill="none">
+                <circle cx="17" cy="17" r="10" />
+                <path d="M24 24l9 9M12 17h10M17 12v10" />
+              </svg>
+            ) : s.slug === "site" ? (
+              <svg viewBox="0 0 40 40" fill="none">
+                <rect x="6" y="7" width="28" height="25" rx="3" />
+                <path d="M6 14h28M13 22l4 4 9-9" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 40 40" fill="none">
+                <path d="M20 5l12 5v9c0 8-5 13-12 16C13 32 8 27 8 19v-9l12-5zM14 19l4 4 8-8" />
+              </svg>
+            )}
+          </div>
           <h3>{s.name}</h3>
           <p>{s.summary}</p>
           <ul>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Packages, FAQ } from "@/components/shared";
 import { RequestForm } from "@/components/request-form";
+import { SignalVisual } from "@/components/signal-visual";
 const steps = [
   ["01", "Обращение", "Вы рассказываете о сайте и задаче."],
   ["02", "Обследование", "Изучаем формы, сервисы и документы."],
@@ -45,57 +46,10 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <div
-            className="hero-art"
-            aria-label="Схема работы: аудит, документы, внедрение"
-          >
-            <div className="art-top">
-              <span>ПОНЯТНЫЙ ПЛАН РАБОТ</span>
-              <span>● ● ●</span>
-            </div>
-            <div className="art-title">
-              <span className="art-shield">✓</span>
-              <div>
-                <small>ВАШ САЙТ</small>
-                <strong>Данные под контролем</strong>
-              </div>
-            </div>
-            <div className="art-line">
-              <span>01</span>
-              <div>
-                <strong>Аудит</strong>
-                <small>Формы, документы и сервисы</small>
-              </div>
-              <b>→</b>
-            </div>
-            <div className="art-line">
-              <span>02</span>
-              <div>
-                <strong>Документы</strong>
-                <small>С юридической проверкой</small>
-              </div>
-              <b>→</b>
-            </div>
-            <div className="art-line">
-              <span>03</span>
-              <div>
-                <strong>Внедрение</strong>
-                <small>Согласованные изменения</small>
-              </div>
-              <b>→</b>
-            </div>
-            <div className="art-footer">
-              <span className="dot" /> ОТ ОБСЛЕДОВАНИЯ ДО РЕЗУЛЬТАТА
-            </div>
-            <div className="art-stamp">
-              152
-              <br />
-              <small>ФЗ</small>
-            </div>
-          </div>
+          <SignalVisual />
         </div>
         <div className="wrap hero-bottom">
-          <span>ПОНЯТНО О СЛОЖНОМ</span>
+          <span>ДАННЫЕ · САЙТ · ПОНЯТНЫЙ ПЛАН</span>
           <span>
             01 — 05 <span aria-hidden="true">↓</span>
           </span>
@@ -127,10 +81,18 @@ export default function Home() {
         </div>
         <div className="wrap check-strip">
           <span>ПРОВЕРЯЕМ</span>
-          <strong>Формы и заявки</strong>
-          <strong>Документы</strong>
-          <strong>Сервисы и cookie</strong>
-          <strong>Маршруты данных</strong>
+          <strong>
+            <i>01</i> Формы и заявки
+          </strong>
+          <strong>
+            <i>02</i> Документы
+          </strong>
+          <strong>
+            <i>03</i> Сервисы и cookie
+          </strong>
+          <strong>
+            <i>04</i> Маршруты данных
+          </strong>
         </div>
       </section>
       <section id="services" className="section services-section">

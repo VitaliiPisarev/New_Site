@@ -62,6 +62,11 @@ test("mobile menu closes on Escape and layouts fit the viewport", async ({
 }) => {
   await page.setViewportSize({ width: 320, height: 800 });
   await page.goto("/");
+  const copyBox = await page.locator(".hero-copy").boundingBox();
+  const graphicBox = await page.locator(".signal-visual").boundingBox();
+  expect(copyBox).not.toBeNull();
+  expect(graphicBox).not.toBeNull();
+  expect(graphicBox!.y).toBeGreaterThanOrEqual(copyBox!.y + copyBox!.height);
   const button = page.locator(".menu-toggle");
   await button.click();
   await expect(button).toHaveAttribute("aria-expanded", "true");
@@ -119,10 +124,29 @@ test("main page remains within viewport at 200% zoom", async ({ page }) => {
   }
 });
 
-test('decorative motion respects reduced-motion preference', async ({ page }) => {
-  await page.goto('/');
-  await expect(page.locator('.hero-art')).toHaveCSS('animation-name', 'card-float');
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(page.locator('.hero-art')).toHaveCSS('animation-name', 'none');
-  await expect(page.locator('.hero-tag .dot')).toHaveCSS('animation-name', 'none');
+test("decorative motion respects reduced-motion preference", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.locator(".signal-lines__flow")).toHaveCSS(
+    "animation-name",
+    "signal-flow",
+  );
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.locator(".signal-lines__flow")).toHaveCSS(
+    "animation-name",
+    "none",
+  );
+  await expect(page.locator(".signal-core__frame")).toHaveCSS(
+    "animation-name",
+    "none",
+  );
+  await expect(page.locator(".signal-node--forms")).toHaveCSS(
+    "animation-name",
+    "none",
+  );
+  await expect(page.locator(".hero-tag .dot")).toHaveCSS(
+    "animation-name",
+    "none",
+  );
 });
