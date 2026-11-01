@@ -1,6 +1,6 @@
 # Сайт услуг по 152-ФЗ
 
-Основа разработки; реальные обращения пока закрыты. ТЗ: docs/specification.md; план: docs/implementation-plan.md; состояние: docs/status.md.
+Прототип публичных страниц; реальные обращения пока закрыты. ТЗ: docs/specification.md; план: docs/implementation-plan.md; состояние: docs/status.md.
 
 Для локальной разработки нужны Node.js 24, npm и Docker Compose. Из корня проекта:
 
