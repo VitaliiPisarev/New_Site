@@ -124,29 +124,14 @@ test("main page remains within viewport at 200% zoom", async ({ page }) => {
   }
 });
 
-test("decorative motion respects reduced-motion preference", async ({
+test("reduced-motion preference disables decorative transitions", async ({
   page,
 }) => {
-  await page.goto("/");
-  await expect(page.locator(".signal-lines__flow")).toHaveCSS(
-    "animation-name",
-    "signal-flow",
-  );
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(page.locator(".signal-lines__flow")).toHaveCSS(
-    "animation-name",
-    "none",
-  );
-  await expect(page.locator(".signal-core__frame")).toHaveCSS(
-    "animation-name",
-    "none",
-  );
-  await expect(page.locator(".signal-node--forms")).toHaveCSS(
-    "animation-name",
-    "none",
-  );
-  await expect(page.locator(".hero-tag .dot")).toHaveCSS(
-    "animation-name",
-    "none",
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveCSS("scroll-behavior", "auto");
+  await expect(page.locator(".hero .button").first()).toHaveCSS(
+    "transition-duration",
+    "0s",
   );
 });
