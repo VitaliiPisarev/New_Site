@@ -1,0 +1,19 @@
+meta:
+  environment: nodejs
+  toolchain:
+    name: npm
+    version: "24"
+build:
+  skip: false
+  additionalCommands: null
+  artifacts:
+    "*": /
+run:
+  scriptName: null
+  scriptArguments: null
+  nodeArguments: null
+  command: ./node_modules/.bin/next start --hostname 0.0.0.0 --port 3000
+  persistenceMount: /data
+  containerPort: "3000"
+  singleton: true
+  zeroDowntime: false
