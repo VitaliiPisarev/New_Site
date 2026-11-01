@@ -20,9 +20,9 @@ export default function Home() {
               <span className="tag-sep">/</span> УСЛУГИ ДЛЯ БИЗНЕСА
             </div>
             <h1>
-              Аудит и доработка сайта{" "}
+              Аудит и доработка{" "}
               <span>
-                по 152-ФЗ<i>.</i>
+                сайта по 152-ФЗ<i>.</i>
               </span>
             </h1>
             <p>
@@ -161,25 +161,43 @@ export default function Home() {
               Посмотреть учебный пример →
             </Link>
           </div>
-          <div className="report-card">
-            <div className="report-top">
-              <span>ПРИМЕР ОТЧЁТА</span>
-              <span>→</span>
+          <div className="report-composition">
+            <div className="report-sheet report-sheet--back" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <span />
             </div>
-            <div className="report-label">УЧЕБНЫЙ МАТЕРИАЛ</div>
-            <h3>Результаты обследования сайта</h3>
-            <p>Пример структуры отчёта на вымышленных данных.</p>
-            <div className="report-rule" />
-            <div className="report-row">
-              <span>01</span> Формы и обращения <b>→</b>
+            <div
+              className="report-sheet report-sheet--inside"
+              aria-hidden="true"
+            >
+              <span />
+              <span />
+              <span />
+              <span />
+              <span />
             </div>
-            <div className="report-row">
-              <span>02</span> Документы и уведомления <b>→</b>
+            <div className="report-card">
+              <div className="report-top">
+                <span>ПРИМЕР ОТЧЁТА</span>
+                <span>→</span>
+              </div>
+              <div className="report-label">УЧЕБНЫЙ МАТЕРИАЛ</div>
+              <h3>Результаты обследования сайта</h3>
+              <p>Пример структуры отчёта на вымышленных данных.</p>
+              <div className="report-rule" />
+              <div className="report-row">
+                <span>01</span> Формы и обращения <b>→</b>
+              </div>
+              <div className="report-row">
+                <span>02</span> Документы и уведомления <b>→</b>
+              </div>
+              <div className="report-row">
+                <span>03</span> Сервисы и рекомендации <b>→</b>
+              </div>
+              <small>Демонстрация · Не является реальным кейсом</small>
             </div>
-            <div className="report-row">
-              <span>03</span> Сервисы и рекомендации <b>→</b>
-            </div>
-            <small>Демонстрация · Не является реальным кейсом</small>
           </div>
         </div>
       </section>

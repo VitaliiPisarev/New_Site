@@ -5,6 +5,7 @@ export function SignalVisual() {
       className="signal-visual"
       aria-label="Схема: сайт, анализ и согласованные действия"
     >
+      <div className="legal-photo" aria-hidden="true" />
       <div className="signal-visual__top">
         <span>МАРШРУТ ДАННЫХ</span>
         <span className="signal-live">СХЕМА РАБОТЫ</span>

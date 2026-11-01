@@ -135,3 +135,35 @@ test("reduced-motion preference disables decorative transitions", async ({
     "0s",
   );
 });
+
+test("report composition and five process steps adapt to screen size", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1024, height: 900 });
+  await page.goto("/");
+  await expect(page.locator(".legal-photo")).toBeVisible();
+  await expect(page.locator(".report-sheet")).toHaveCount(2);
+  await expect(
+    page.locator(".report-card").getByText("УЧЕБНЫЙ МАТЕРИАЛ"),
+  ).toBeVisible();
+  const desktop = await page
+    .locator(".steps article")
+    .evaluateAll((nodes) =>
+      nodes.map((node) => ({
+        x: node.getBoundingClientRect().x,
+        y: node.getBoundingClientRect().y,
+      })),
+    );
+  expect(desktop).toHaveLength(5);
+  expect(desktop.every((step) => Math.abs(step.y - desktop[0].y) < 1)).toBe(
+    true,
+  );
+  expect(desktop[4].x).toBeGreaterThan(desktop[0].x);
+  await page.setViewportSize({ width: 390, height: 900 });
+  const mobile = await page
+    .locator(".steps article")
+    .evaluateAll((nodes) =>
+      nodes.map((node) => node.getBoundingClientRect().y),
+    );
+  expect(mobile.every((y, i) => i === 0 || y > mobile[i - 1])).toBe(true);
+});
