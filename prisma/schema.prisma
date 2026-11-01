@@ -1,0 +1,193 @@
+generator client {
+  provider = "prisma-client"
+  output = "../src/generated/prisma"
+}
+datasource db {
+  provider = "postgresql"
+}
+
+enum DocumentType {
+  PRIVACY
+  CONSENT
+  COOKIES
+}
+enum RequestStatus {
+  NEW
+  IN_PROGRESS
+  WAITING_FOR_INFO
+  CLOSED
+}
+enum NotificationStatus {
+  PENDING
+  PROCESSING
+  SENT
+  FAILED
+}
+enum Role {
+  ADMIN
+  EDITOR
+  REQUEST_MANAGER
+}
+model Request {
+  id String @id @default(uuid()) @db.Uuid
+  createdAt DateTime @default(now())
+  websiteUrl String @db.VarChar(2048)
+  contactMethod String @db.VarChar(16)
+  contact String @db.VarChar(254)
+  comment String? @db.VarChar(1000)
+  serviceCode String @db.VarChar(16)
+  formId String @db.VarChar(64)
+  sourcePage String @db.VarChar(64)
+  utmSource String? @db.VarChar(64)
+  utmMedium String? @db.VarChar(64)
+  utmCampaign String? @db.VarChar(64)
+  attemptToken String @unique @db.Uuid
+  payloadHash String @db.Char(64)
+  status RequestStatus @default(NEW)
+  consent ConsentRecord?
+  notification NotificationJob?
+  events RequestStatusEvent[]
+  @@index([createdAt, status])
+}
+model DocumentVersion {
+  id String @id @default(uuid()) @db.Uuid
+  type DocumentType
+  version String
+  ownerLabel String
+  text String
+  contentHash String @db.Char(64)
+  effectiveAt DateTime?
+  approvedAt DateTime?
+  createdAt DateTime @default(now())
+  consents ConsentRecord[]
+  publication DocumentPublication?
+  @@unique([type, version])
+  @@unique([id, contentHash])
+}
+model ConsentRecord {
+  id String @id @default(uuid()) @db.Uuid
+  requestId String @unique @db.Uuid
+  request Request @relation(fields:[requestId], references:[id], onDelete:Restrict)
+  documentId String @db.Uuid
+  documentHash String @db.Char(64)
+  document DocumentVersion @relation(fields:[documentId,documentHash], references:[id,contentHash], onDelete:Restrict)
+  formId String
+  action String
+  occurredAt DateTime @default(now())
+}
+model NotificationJob {
+  id String @id @default(uuid()) @db.Uuid
+  requestId String @unique @db.Uuid
+  request Request @relation(fields:[requestId],references:[id],onDelete:Cascade)
+  status NotificationStatus @default(PENDING)
+  attempts Int @default(0)
+  nextAttemptAt DateTime @default(now())
+  lockedUntil DateTime?
+  lockToken String? @db.Uuid
+  @@index([status,nextAttemptAt])
+}
+model RequestStatusEvent {
+  id String @id @default(uuid()) @db.Uuid
+  requestId String @db.Uuid
+  request Request @relation(fields:[requestId],references:[id],onDelete:Cascade)
+  actorId String
+  fromStatus RequestStatus?
+  toStatus RequestStatus
+  createdAt DateTime @default(now())
+}
+model SiteSetting {
+  key String @id
+  value Json
+  updatedAt DateTime @updatedAt
+}
+model ServicePackage {
+  code String @id
+  title String
+  content Json
+  priceMode String @default("AFTER_REVIEW")
+  priceRub Int?
+  published Boolean @default(false)
+}
+model FaqItem {
+  id String @id @default(uuid()) @db.Uuid
+  groupCode String
+  question String
+  answer String
+  sortOrder Int @default(0)
+  published Boolean @default(false)
+}
+model PageContent {
+  slug String @id
+  title String
+  blocks Json
+  published Boolean @default(false)
+}
+model User {
+  id String @id
+  name String
+  email String @unique
+  emailVerified Boolean @default(false)
+  image String?
+  role Role @default(EDITOR)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  sessions Session[]
+  accounts Account[]
+}
+model Session {
+  id String @id
+  expiresAt DateTime
+  token String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId String
+  user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+  @@index([userId])
+}
+model Account {
+  id String @id
+  accountId String
+  providerId String
+  userId String
+  user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+  accessToken String?
+  refreshToken String?
+  idToken String?
+  accessTokenExpiresAt DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope String?
+  password String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@unique([providerId, accountId])
+}
+model Verification {
+  id String @id
+  identifier String
+  value String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DocumentPublication {
+  type DocumentType @id
+  documentId String @unique @db.Uuid
+  document DocumentVersion @relation(fields:[documentId],references:[id],onDelete:Restrict)
+  publishedAt DateTime @default(now())
+}
+model RateLimitBucket {
+  keyHash String @id @db.Char(64)
+  attempts Int @default(0)
+  expiresAt DateTime
+  @@index([expiresAt])
+}
+model ExportAuditEvent {
+  id String @id @default(uuid()) @db.Uuid
+  actorId String
+  occurredAt DateTime @default(now())
+  recordCount Int
+  filters Json
+}

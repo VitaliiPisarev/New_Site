@@ -1,0 +1,1 @@
+export default function Home(){return <main className="mx-auto max-w-3xl px-6 py-16"><p>Тестовая среда · этап 1</p><h1 className="my-6 text-3xl font-bold">Аудит и доработка сайта по 152-ФЗ</h1><p>Основа проекта разрабатывается.</p><p>Приём обращений закрыт. Не вводите реальные персональные данные.</p></main>}

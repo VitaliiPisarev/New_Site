@@ -1,0 +1,25 @@
+name: site152-dev
+services:
+  postgres:
+    image: postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?Run npm run env:init}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run npm run env:init}
+      POSTGRES_DB: site152_dev
+    ports: ['127.0.0.1:54329:5432']
+    volumes: ['postgres-data:/var/lib/postgresql/data']
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $$POSTGRES_USER -d site152_dev']
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  mailpit:
+    image: axllent/mailpit@sha256:94f6b70c1436defae6799d9ac7ff0eeff9540465b842026d5cdb018f1c0234ea
+    ports: ['127.0.0.1:1025:1025','127.0.0.1:8025:8025']
+    healthcheck:
+      test: ['CMD','/mailpit','readyz']
+      interval: 2s
+      timeout: 3s
+      retries: 30
+volumes:
+  postgres-data:
