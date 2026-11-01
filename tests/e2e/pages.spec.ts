@@ -118,3 +118,11 @@ test("main page remains within viewport at 200% zoom", async ({ page }) => {
     ).toBeTruthy();
   }
 });
+
+test('decorative motion respects reduced-motion preference', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.hero-art')).toHaveCSS('animation-name', 'card-float');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(page.locator('.hero-art')).toHaveCSS('animation-name', 'none');
+  await expect(page.locator('.hero-tag .dot')).toHaveCSS('animation-name', 'none');
+});
