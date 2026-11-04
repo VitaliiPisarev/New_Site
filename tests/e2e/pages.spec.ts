@@ -141,7 +141,7 @@ test("report composition and five process steps adapt to screen size", async ({
 }) => {
   await page.setViewportSize({ width: 1024, height: 900 });
   await page.goto("/");
-  await expect(page.locator(".legal-photo")).toBeVisible();
+  await expect(page.locator(".hero")).toHaveCSS("background-image", /legal-hero-lettered\.png/);
   await expect(page.locator(".report-sheet")).toHaveCount(2);
   await expect(
     page.locator(".report-card").getByText("УЧЕБНЫЙ МАТЕРИАЛ"),
