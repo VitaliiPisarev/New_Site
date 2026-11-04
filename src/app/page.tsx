@@ -11,13 +11,12 @@ const steps = [
 ];
 export default function Home() {
   return (
-    <main id="main">
+    <main id="main" className="home">
       <section className="hero">
         <div className="wrap hero-grid">
           <div className="hero-copy">
             <div className="hero-tag">
-              <span className="dot" /> ТУЛА И ОБЛАСТЬ{" "}
-              <span className="tag-sep">/</span> УСЛУГИ ДЛЯ БИЗНЕСА
+              <span className="dot" /> СООТВЕТСТВИЕ 152-ФЗ ДЛЯ ВАШЕГО САЙТА
             </div>
             <h1>
               Аудит и доработка{" "}
@@ -33,17 +32,11 @@ export default function Home() {
               <a className="button" href="#request">
                 Запросить разбор сайта <span aria-hidden="true">→</span>
               </a>
-              <a className="text-link" href="#services">
-                Посмотреть состав работ <span aria-hidden="true">↓</span>
-              </a>
             </div>
-            <div className="hero-foot">
-              <span className="hero-foot-icon">✓</span>
-              <span>
-                Без лишних обещаний.
-                <br />
-                <strong>С понятным планом работ.</strong>
-              </span>
+            <div className="hero-benefits">
+              <div><span className="hero-benefit-icon hero-benefit-icon--audit" aria-hidden="true" /><span>Анализ<br />вашего сайта</span></div>
+              <div><span className="hero-benefit-icon hero-benefit-icon--advice" aria-hidden="true" /><span>Понятные<br />рекомендации</span></div>
+              <div><span className="hero-benefit-icon hero-benefit-icon--work" aria-hidden="true" /><span>Доработка<br />при необходимости</span></div>
             </div>
           </div>
           <SignalVisual />
@@ -55,54 +48,13 @@ export default function Home() {
           </span>
         </div>
       </section>
-      <section className="section intro">
-        <div className="wrap split">
-          <div>
-            <p className="eyebrow">01 / КОМУ ПОДХОДИТ</p>
-            <h2>
-              Сайт работает.
-              <br />А как работают <em>данные?</em>
-            </h2>
-          </div>
-          <div>
-            <p className="lead">
-              Для бизнеса, который получает обращения через сайт и хочет
-              разобраться, что происходит с данными посетителей.
-            </p>
-            <p>
-              Формы, почта, аналитика и сторонние сервисы образуют единый
-              маршрут. Поможем увидеть его целиком и определить следующие шаги.
-              Сложные процессы оцениваются отдельно.
-            </p>
-            <Link className="arrow-link" href="/audit/">
-              Что входит в аудит <span>→</span>
-            </Link>
-          </div>
-        </div>
-        <div className="wrap check-strip">
-          <span>ПРОВЕРЯЕМ</span>
-          <strong>
-            <i>01</i> Формы и заявки
-          </strong>
-          <strong>
-            <i>02</i> Документы
-          </strong>
-          <strong>
-            <i>03</i> Сервисы и cookie
-          </strong>
-          <strong>
-            <i>04</i> Маршруты данных
-          </strong>
-        </div>
-      </section>
       <section id="services" className="section services-section">
         <div className="wrap">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">02 / НАПРАВЛЕНИЯ РАБОТЫ</p>
+              <p className="eyebrow">НАШИ УСЛУГИ</p>
               <h2>
-                Выберите нужный
-                <br />
+                Выберите нужный{" "}
                 <em>объём помощи</em>
               </h2>
             </div>
@@ -121,10 +73,9 @@ export default function Home() {
         <div className="wrap">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">03 / КАК МЫ РАБОТАЕМ</p>
+              <p className="eyebrow">КАК МЫ РАБОТАЕМ</p>
               <h2>
-                От первого вопроса
-                <br />
+                От первого вопроса{" "}
                 <em>до понятного результата</em>
               </h2>
             </div>
@@ -147,7 +98,7 @@ export default function Home() {
       <section className="section deliverables">
         <div className="wrap deliver-grid">
           <div>
-            <p className="eyebrow light">04 / РЕЗУЛЬТАТ РАБОТЫ</p>
+            <p className="eyebrow light">РЕЗУЛЬТАТ РАБОТЫ</p>
             <h2>
               Не просто документы.
               <br />
@@ -158,7 +109,7 @@ export default function Home() {
               и информацию для дальнейшей работы с сайтом.
             </p>
             <Link className="button button-white" href="/demo/#report">
-              Посмотреть учебный пример →
+              Посмотреть пример отчёта →
             </Link>
           </div>
           <div className="report-composition">
@@ -201,10 +152,50 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section className="section intro">
+        <div className="wrap split">
+          <div>
+            <p className="eyebrow">КОМУ ПОДХОДИТ</p>
+            <h2>
+              Сайт работает.
+              <br />А как работают <em>данные?</em>
+            </h2>
+          </div>
+          <div>
+            <p className="lead">
+              Для бизнеса, который получает обращения через сайт и хочет
+              разобраться, что происходит с данными посетителей.
+            </p>
+            <p>
+              Формы, почта, аналитика и сторонние сервисы образуют единый
+              маршрут. Поможем увидеть его целиком и определить следующие шаги.
+              Сложные процессы оцениваются отдельно.
+            </p>
+            <Link className="arrow-link" href="/audit/">
+              Что входит в аудит <span>→</span>
+            </Link>
+          </div>
+        </div>
+        <div className="wrap check-strip">
+          <span>ПРОВЕРЯЕМ</span>
+          <strong>
+            <i>01</i> Формы и заявки
+          </strong>
+          <strong>
+            <i>02</i> Документы
+          </strong>
+          <strong>
+            <i>03</i> Сервисы и cookie
+          </strong>
+          <strong>
+            <i>04</i> Маршруты данных
+          </strong>
+        </div>
+      </section>
       <section className="section">
         <div className="wrap demo-banner">
           <div>
-            <p className="eyebrow">05 / ПОПРОБУЙТЕ САМИ</p>
+            <p className="eyebrow">ПОПРОБУЙТЕ САМИ</p>
             <h2>
               Посмотрите,
               <br />
@@ -263,7 +254,7 @@ export default function Home() {
       <section className="section faq-section">
         <div className="wrap faq-grid">
           <div>
-            <p className="eyebrow">06 / ВОПРОСЫ И ОТВЕТЫ</p>
+            <p className="eyebrow">ВОПРОСЫ И ОТВЕТЫ</p>
             <h2>
               Отвечаем
               <br />
@@ -277,7 +268,7 @@ export default function Home() {
           <FAQ />
         </div>
       </section>
-      <RequestForm />
+      <RequestForm compact />
     </main>
   );
 }

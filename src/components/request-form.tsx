@@ -2,7 +2,7 @@
 import { useId, useRef, useState } from "react";
 import Link from "next/link";
 type Errors = Partial<Record<"website" | "contact" | "consent", string>>;
-export function RequestForm({ service = "general" }: { service?: string }) {
+export function RequestForm({ service = "general", compact = false }: { service?: string; compact?: boolean }) {
   const id = useId();
   const form = useRef<HTMLFormElement>(null);
   const [method, setMethod] = useState("email");
@@ -55,27 +55,7 @@ export function RequestForm({ service = "general" }: { service?: string }) {
       "Приём обращений пока не подключён. Данные не отправлены и не сохранены.",
     );
   }
-  return (
-    <section id="request" className="request section">
-      <div className="wrap request-grid">
-        <div>
-          <p className="eyebrow light">НАЧНЁМ С ВАШЕГО САЙТА</p>
-          <h2>
-            Расскажите
-            <br />о задаче<span className="accent">.</span>
-          </h2>
-          <p className="request-intro">
-            Пришлите адрес сайта и контакт. Уточним задачу и предложим состав
-            работ.
-          </p>
-          <div className="request-note">
-            <span>→</span>
-            <p>
-              Предварительный разбор поможет определить состав работ. Он не
-              является юридическим заключением.
-            </p>
-          </div>
-        </div>
+  const formFields = (
         <form
           ref={form}
           className="form-card"
@@ -191,6 +171,53 @@ export function RequestForm({ service = "general" }: { service?: string }) {
             {notice}
           </p>
         </form>
+  );
+  if (compact) {
+    return (
+      <section id="request" className="request request-compact section">
+        <div className="wrap request-compact-grid">
+          <div>
+            <h2>Оставьте заявку на разбор сайта</h2>
+            <p className="request-intro">
+              Проверим сайт и подскажем, что нужно доработать.<br />
+              Ответим на вопросы и сориентируем по дальнейшим шагам.
+            </p>
+          </div>
+          <div>
+          <details className="request-details">
+            <summary className="button">Запросить разбор <span aria-hidden="true">→</span></summary>
+            <p className="request-compact-note">Предварительный разбор поможет определить состав работ. Он не является юридическим заключением.</p>
+            {formFields}
+          </details>
+          <p className="request-compact-note">Кратко опишите сайт — мы свяжемся с вами и согласуем детали.</p>
+          <p className="request-compact-note request-test-notice">Тестовый режим: обращения не отправляются.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  return (
+    <section id="request" className="request section">
+      <div className="wrap request-grid">
+        <div>
+          <p className="eyebrow light">НАЧНЁМ С ВАШЕГО САЙТА</p>
+          <h2>
+            Расскажите
+            <br />о задаче<span className="accent">.</span>
+          </h2>
+          <p className="request-intro">
+            Пришлите адрес сайта и контакт. Уточним задачу и предложим состав
+            работ.
+          </p>
+          <div className="request-note">
+            <span>→</span>
+            <p>
+              Предварительный разбор поможет определить состав работ. Он не
+              является юридическим заключением.
+            </p>
+          </div>
+        </div>
+        {formFields}
       </div>
     </section>
   );

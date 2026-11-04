@@ -4060,3 +4060,170 @@ input:not([type=checkbox]),select,textarea { background:#fff; color:#172334; bor
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Композиция главной по согласованному визуальному референсу. */
+.home .hero {
+  background: #0a1825 url("/images/legal-hero-reference.png") center / cover no-repeat;
+}
+.home .hero::before { display: none; }
+.home .hero-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 30px;
+  min-height: 500px;
+  padding-top: 45px;
+  padding-bottom: 35px;
+}
+.home .hero h1 { font-size: clamp(48px, 5.2vw, 72px); line-height: 1.04; margin: 20px 0 14px; }
+.home .hero-copy > p { font-size: 18px; line-height: 1.45; max-width: 515px; }
+.home .hero .button-row { margin-top: 24px; }
+.home .hero .button { min-height: 52px; }
+.home .hero-foot { margin-top: 24px; }
+.home .signal-visual {
+  min-height: 390px;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
+  background: none;
+}
+.home .signal-visual::before,
+.home .legal-photo,
+.home .legal-document,
+.home .signal-visual__top,
+.home .signal-visual__bottom { display: none; }
+.home .legal-checklist {
+  right: 2%;
+  bottom: 8%;
+  width: min(58%, 270px);
+  background: #101c28f5;
+  border: 1px solid #ad9979;
+  box-shadow: 0 14px 35px #0007;
+  transform: rotate(5deg);
+  padding: 16px 20px;
+}
+.home .legal-checklist p { font-size: 15px; font-weight: 400; }
+.home .hero-bottom { padding-top: 12px; padding-bottom: 12px; }
+.home .services-section,
+.home .process-section,
+.home .deliverables { padding-top: 42px; padding-bottom: 42px; }
+.home .section-heading { margin-bottom: 24px; align-items: end; }
+.home .section-heading h2 { font-size: clamp(34px, 3.5vw, 48px); }
+.home .section-heading h2 br { display: none; }
+.home .section-heading h2 em { font-style: normal; }
+.home .package,
+.home .package:nth-child(2) {
+  min-height: 0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+.home .package-mark { margin-top: 6px; width: 50px; height: 50px; }
+.home .package h3 { font-size: 27px; margin: 14px 0 8px; }
+.home .package > p { min-height: 0; margin: 0 0 12px; }
+.home .package ul { margin: 0; padding-top: 12px; padding-bottom: 12px; }
+.home .package-bottom { margin-top: auto; padding-top: 14px; }
+.home .process-section { background: #efebe5; }
+.home .steps article { min-height: 0; }
+.home .steps h3 { font-size: 19px; }
+.home .deliverables {
+  background: #f8f5f0;
+}
+.home .deliverables .deliver-grid > div:first-child { background: transparent; padding: 0; }
+.home .deliver-grid { align-items: center; gap: 30px; }
+.home .report-composition {
+  background: url("/images/report.png") center / contain no-repeat;
+  min-height: 320px;
+  padding: 12px 0;
+  justify-content: center;
+}
+.home .report-sheet { display: none; }
+.home .report-card {
+  width: min(65%, 310px);
+  min-width: 0;
+  margin-right: 22%;
+  padding: 18px 20px;
+  transform: rotate(-4deg);
+}
+.home .report-card h3 { font-size: 21px; }
+.button { transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease-out; }
+.button:active { transform: scale(.98); }
+@media (max-width: 900px) {
+  .home .hero-grid { grid-template-columns: 1fr 0.8fr; gap: 10px; }
+  .home .legal-checklist { width: min(80%, 260px); }
+}
+@media (max-width: 650px) {
+  .home .hero { background-position: 68% top; background-size: auto 440px; background-repeat: no-repeat; }
+  .home .hero-grid { grid-template-columns: minmax(0,1fr); gap: 0; padding-top: 38px; padding-bottom: 22px; }
+  .home .hero-copy { background: #0b1825e8; padding: 20px; margin: 0; }
+  .home .hero h1 { font-size: clamp(37px, 10vw, 50px); }
+  .home .hero-copy > p { font-size: 16px; }
+  .home .signal-visual { min-height: 235px; width: 100%; }
+  .home .legal-checklist { right: 0; bottom: 8px; width: min(65%, 230px); transform: rotate(3deg); padding: 10px 14px; }
+  .home .legal-checklist p { font-size: 13px; }
+  .home .hero-bottom { padding-top: 10px; padding-bottom: 10px; }
+  .home .services-section, .home .process-section, .home .deliverables { padding-top: 48px; padding-bottom: 48px; }
+  .home .section-heading h2 { font-size: 34px; }
+  .home .steps { grid-template-columns: 1fr; gap: 16px; }
+  .home .steps article { border-top: 1px solid #cbbba3; padding: 14px 0 0; }
+  .home .steps article:not(:last-child)::after { display: none; }
+  .home .steps h3 { margin-top: 12px; }
+  .home .report-composition { min-height: 300px; }
+  .home .report-card { width: min(68%, 270px); margin-right: 18%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .button { transition: none; }
+  .button:active { transform: none; }
+}
+@media (min-width: 901px) {
+  .home .hero-grid { min-height: 430px; padding-top: 32px; padding-bottom: 28px; }
+  .home .signal-visual { min-height: 370px; }
+}
+
+/* Уточнение по комментариям к референсу. */
+.home .legal-checklist { width: min(52%, 248px); padding: 14px 17px; }
+.home .legal-checklist > div { gap: 10px; padding: 5px 0; }
+.home .legal-checklist > div > span { width: 25px; height: 25px; }
+.home .legal-checklist p { font-size: 14px; font-weight: 400; line-height: 1.25; }
+.request-compact.section { padding: 30px 0; }
+.request-compact-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(250px, 340px); align-items: start; gap: 36px; }
+.request-compact h2 { margin: 0 0 8px; color: white; font-size: clamp(28px, 3vw, 40px); line-height: 1.15; }
+.request-compact .request-intro { margin: 0; font-size: 15px; line-height: 1.5; }
+.request-details { min-width: 0; }
+.request-details summary { list-style: none; cursor: pointer; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+.request-details summary::-webkit-details-marker { display: none; }
+.request-details summary:focus-visible { outline: 3px solid #f1cf91; outline-offset: 3px; }
+.request-compact-note { color: #e0d8cb; font-size: 13px; line-height: 1.45; margin: 9px 0; }
+.request-details .form-card { margin-top: 15px; }
+.footer { padding: 25px 0 18px; }
+.footer-grid { display: grid; grid-template-columns: minmax(200px,1.2fr) repeat(3,minmax(0,1fr)); gap: 24px; align-items: start; }
+.footer-grid > div:first-child p { margin: 8px 0 4px; }
+.footer-grid > div:not(:first-child) { display: flex; flex-wrap: wrap; column-gap: 15px; row-gap: 4px; }
+.footer-grid > div:not(:first-child) h2 { flex-basis: 100%; margin: 0 0 3px; }
+.footer-grid > div:not(:first-child) a { margin: 0; }
+.footer-bottom { margin-top: 15px; padding-top: 12px; }
+@media (max-width: 650px) {
+  .home .legal-checklist { width: min(68%, 230px); padding: 8px 12px; }
+  .home .legal-checklist > div { padding: 3px 0; }
+  .home .legal-checklist p { font-size: 12px; }
+  .request-compact-grid { grid-template-columns: 1fr; gap: 18px; }
+  .request-compact.section { padding: 32px 0; }
+  .footer-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; }
+  .footer-grid > div:first-child { grid-column: 1 / -1; }
+}
+.home .hero { background-image: url("/images/legal-hero-lettered.png"); }
+
+/* Подписи и преимущества по референсу. */
+.home .hero-benefits { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 27px; }
+.home .hero-benefits > div { display: flex; align-items: center; gap: 10px; color: #f5f1e9; font-size: 13px; line-height: 1.3; }
+.hero-benefit-icon { display: grid; place-items: center; width: 36px; height: 36px; flex: none; border: 1px solid #d7b378; border-radius: 50%; }
+.hero-benefit-icon::before { content: ""; width: 19px; height: 19px; background: #e1bd81; mask: var(--benefit-icon) center / contain no-repeat; }
+.hero-benefit-icon--audit { --benefit-icon: url("/icons/file-text.svg"); }
+.hero-benefit-icon--advice { --benefit-icon: url("/icons/shield-check.svg"); }
+.hero-benefit-icon--work { --benefit-icon: url("/icons/settings.svg"); }
+.request-compact.section { background-color: #081522; }
+.request-compact .request-compact-note { color: #e6ddd0; }
+.request-compact .request-test-notice { font-size: 12px; color: #e7cfac; }
+.footer .region { display: block; margin-top: 10px; line-height: 1.45; }
+@media (max-width: 650px) { .home .hero-benefits { gap: 15px; } .home .hero-benefits > div { font-size: 12px; } }
+.request-compact.section { background: #071421 url("/images/request-columns.png") right center / cover no-repeat; }

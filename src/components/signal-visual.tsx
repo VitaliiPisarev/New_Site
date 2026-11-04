@@ -20,30 +20,18 @@ export function SignalVisual() {
         <span className="legal-document__rules" />
       </div>
       <div className="legal-checklist" aria-hidden="true">
-        <div>
-          <span>✓</span>
-          <p>
-            <small>01 / СБОР</small>Формы сайта
-          </p>
-        </div>
-        <div>
-          <span>✓</span>
-          <p>
-            <small>02 / ПЕРЕДАЧА</small>Сервисы
-          </p>
-        </div>
-        <div>
-          <span>✓</span>
-          <p>
-            <small>03 / ОСНОВАНИЯ</small>Документы
-          </p>
-        </div>
-        <div>
-          <span>✓</span>
-          <p>
-            <small>04 / РЕЗУЛЬТАТ</small>План действий
-          </p>
-        </div>
+        {[
+          "Политика конфиденциальности",
+          "Согласия пользователей",
+          "Формы на сайте",
+          "Cookie и аналитика",
+          "Технические настройки",
+        ].map((item) => (
+          <div key={item}>
+            <span>✓</span>
+            <p>{item}</p>
+          </div>
+        ))}
       </div>
       <div className="signal-visual__bottom">
         <span>ФОРМЫ</span>
